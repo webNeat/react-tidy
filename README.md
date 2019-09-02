@@ -1,5 +1,7 @@
 # React Tidy
 
+[![Build Status](https://travis-ci.org/webNeat/react-tidy.svg?branch=master)](https://travis-ci.org/webNeat/react-tidy)
+
 A collection of handy, flexible and well-tested React custom hooks.
 
 **This library is still under construction!**
