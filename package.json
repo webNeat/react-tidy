@@ -10,7 +10,8 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --env=jsdom"
+    "test": "tsdx test --env=jsdom",
+    "test-coverage": "tsdx test --env=jsdom --coverage --coverageReporters=text-lcov | coveralls"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -31,6 +32,7 @@
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
+    "coveralls": "^3.0.6",
     "husky": "^3.0.4",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
