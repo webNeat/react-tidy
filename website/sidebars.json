@@ -1,0 +1,6 @@
+{
+  "docs": {
+    "Getting Started": ["introduction", "install"],
+    "Custom Hooks": ["use-storage"]
+  }
+}
