@@ -1,6 +1,8 @@
 {
   "docs": {
     "Getting Started": ["introduction", "install"],
-    "Custom Hooks": ["use-storage"]
+    "Custom Hooks": ["use-storage"],
+    "Functions": ["create-memory-storage"],
+    "Interfaces": ["storage"]
   }
 }

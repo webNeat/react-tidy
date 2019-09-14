@@ -5,11 +5,17 @@
     "previous": "Previous",
     "tagline": "A collection of handy, flexible, tested and documented React custom hooks.",
     "docs": {
+      "create-memory-storage": {
+        "title": "createMemoryStorage"
+      },
       "install": {
         "title": "Install"
       },
       "introduction": {
         "title": "Introduction"
+      },
+      "storage": {
+        "title": "Storage"
       },
       "use-storage": {
         "title": "useStorage"
@@ -18,7 +24,9 @@
     "links": {},
     "categories": {
       "Getting Started": "Getting Started",
-      "Custom Hooks": "Custom Hooks"
+      "Custom Hooks": "Custom Hooks",
+      "Functions": "Functions",
+      "Interfaces": "Interfaces"
     }
   },
   "pages-strings": {

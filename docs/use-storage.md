@@ -2,7 +2,6 @@
 title: useStorage
 ---
 
-### useStorage
 Get and set an item of a storage like `localStorage` and `sessionStorage`.
 
 ```ts
@@ -13,12 +12,12 @@ function useStorage(
 )
 ```
 
-#### Parameters
+## Parameters
 - **key**: The key of the item on the storage.
 - **defaultValue**(optional): The value to return and set into the storage when no item with given key is found. (Default: `null`).
-- **storage**(optional): The storage object to use. You can pass `window.localStorage`, `window.sessionStorage`, or any object implementing the [`Storage`](#storage) interface. By default, a [memory storage](#creatememorystorage) will be used.
+- **storage**(optional): The storage object to use. You can pass `window.localStorage`, `window.sessionStorage`, or any object implementing the [`Storage`](storage.md) interface. By default, a [memory storage](create-memory-storage.md) will be used.
 
-#### Usage
+## Usage
 ```tsx
 import {useStorage} from 'react-tidy'
 ```
