@@ -1,0 +1,60 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  displayName: 'Install Node.js'
+  inputs:
+    versionSpec: '10.x'
+
+- script: npm install
+  displayName: 'Install dependencies'
+
+- script: npm run build
+  displayName: 'Transpile files'
+
+- script: npm test
+  displayName: 'Run tests'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      npm i
+      npm run build
+    workingDirectory: 'website'
+  displayName: 'Build docs'
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'hvps'
+    sourceFolder: 'website/build/react-tidy'
+    contents: '**'
+    targetFolder: '/var/www/html/react-tidy'
+    cleanTargetFolder: true
+  displayName: 'Deploy docs'
+
+
+
+- task: GitHubRelease@1
+  displayName: Create Github release
+  inputs:
+    gitHubConnection: 'release'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'userSpecifiedTag'
+    tag: '$(Build.BuildNumber)'
+    isPreRelease: true
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    workingDir: '.'
+    publishEndpoint: 'npm'
