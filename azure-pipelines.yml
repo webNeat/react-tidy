@@ -16,7 +16,7 @@ steps:
 - script: npm run build
   displayName: 'Transpile files'
 
-- script: npm run test-coverage
+- script: npm t
   displayName: 'Run tests'
 
 - task: Bash@3
