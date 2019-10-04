@@ -1,6 +1,7 @@
 const siteConfig = {
   title: 'React Tidy',
-  tagline: 'A collection of handy, flexible, tested and documented React custom hooks.',
+  tagline:
+    'A collection of handy, flexible, tested and documented React custom hooks.',
   url: 'https://webneat.net',
   baseUrl: '/react-tidy/',
   projectName: 'react-tidy',
@@ -18,26 +19,28 @@ const siteConfig = {
     secondaryColor: '#08448a',
   },
 
+  // Add custom scripts here that would be placed in <script> tags.
+  scripts: [
+    'https://buttons.github.io/buttons.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js'
+  ],
+
+  stylesheets: [
+    'https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500,700|Source+Code+Pro:500,700|Source+Sans+Pro:400,400i,700',
+  ],
+
   /* Custom fonts for website */
-  /*
   fonts: {
-    myFont: [
-      "Times New Roman",
-      "Serif"
-    ],
-    myOtherFont: [
-      "-apple-system",
-      "system-ui"
-    ]
-  },
-  */
-  copyright: `Copyright © ${new Date().getFullYear()} Amine Ben hammou`,
-  highlight: {
-    theme: 'default', // Highlight.js theme
+    fontMain: ['Source Sans Pro', 'sans-serif'],
+    fontCode: ['IBM Plex Mono', 'monospace'],
   },
 
-  // Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
+  copyright: `Copyright © ${new Date().getFullYear()} Amine Ben hammou`,
+  usePrism: true,
+  highlight: {
+    theme: 'default', // Highlight.js theme
+    defaultLang: 'javascript',
+  },
 
   // On page navigation for the current documentation page.
   onPageNav: 'separate',
@@ -60,6 +63,6 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
-};
+}
 
-module.exports = siteConfig;
+module.exports = siteConfig
