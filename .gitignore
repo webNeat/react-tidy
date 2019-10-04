@@ -8,3 +8,4 @@ node_modules
 dist
 *.code-workspace
 website/build
+coverage

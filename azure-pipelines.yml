@@ -16,7 +16,7 @@ steps:
 - script: npm run build
   displayName: 'Transpile files'
 
-- script: npm test
+- script: npm t
   displayName: 'Run tests'
 
 - task: Bash@3
@@ -48,7 +48,7 @@ steps:
     target: '$(Build.SourceVersion)'
     tagSource: 'userSpecifiedTag'
     tag: '$(Build.BuildNumber)'
-    isPreRelease: true
+    isPreRelease: false
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
