@@ -36,7 +36,7 @@ steps:
     targetFolder: '/var/www/html/react-tidy'
     cleanTargetFolder: true
   displayName: 'Deploy docs'
-
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 
 - task: GitHubRelease@1
@@ -58,3 +58,4 @@ steps:
     command: 'publish'
     workingDir: '.'
     publishEndpoint: 'npm'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
