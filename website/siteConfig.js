@@ -7,9 +7,7 @@ const siteConfig = {
   projectName: 'react-tidy',
   organizationName: 'webneat',
   headerLinks: [
-    // {doc: 'doc1', label: 'Docs'},
-    // {doc: 'doc4', label: 'API'},
-    // {page: 'help', label: 'Help'}
+    { href: 'https://github.com/webNeat/react-tidy', label: 'GitHub' }
   ],
   headerIcon: 'img/logo-light.svg',
   footerIcon: 'img/logo-light.svg',
