@@ -13,11 +13,15 @@ function useStorage(
 ```
 
 ## Parameters
-- **key**: The key of the item on the storage.
-- **defaultValue**(optional): The value to return and set into the storage when no item with given key is found. (Default: `null`).
-- **storage**(optional): The storage object to use. You can pass `window.localStorage`, `window.sessionStorage`, or any object implementing the [`Storage`](storage.md) interface. By default, a [memory storage](create-memory-storage.md) will be used.
+
+`key`: The key of the item on the storage.
+
+`defaultValue` __(optional)__: The value to return and set into the storage when no item with given key is found. (Default: `null`).
+
+`storage` __(optional)__: The storage object to use. You can pass `window.localStorage`, `window.sessionStorage`, or any object implementing the [`Storage`](storage.md) interface. By default, a [memory storage](create-memory-storage.md) will be used.
 
 ## Usage
+
 ```typescript
 import {useStorage} from 'react-tidy'
 ```
