@@ -1,14 +1,14 @@
 import React from 'react'
-import { Storage, Fn } from './types'
-import { createMemoryStorage } from './createMemoryStorage'
 import { isFunction } from './utils'
+import { Storage, Fn } from './types'
+import { getDefaultStorage } from './storages'
 
 type Value<T> = T | Fn<T> | null
 
 export function useStorage<T>(
   key: string,
   initialValue: Value<T> = null,
-  storage: Storage = useStorage.__storage
+  storage: Storage = getDefaultStorage()
 ): [T | null, (x: Value<T>) => void] {
   let storedString = storage.getItem(key)
   const [value, setValue] = React.useState<T | null>(
@@ -16,9 +16,9 @@ export function useStorage<T>(
   )
   React.useEffect(() => {
     if (!storedString && initialValue) {
-      storage.setItem(name, JSON.stringify(initialValue))
+      storage.setItem(key, JSON.stringify(initialValue))
     }
-  }, [])
+  }, [key, initialValue])
   const set = React.useCallback(
     (newValue: Value<T>) => {
       if (newValue === null) {
@@ -36,5 +36,3 @@ export function useStorage<T>(
   )
   return [value, set]
 }
-
-useStorage.__storage = createMemoryStorage()

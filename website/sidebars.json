@@ -1,8 +1,26 @@
 {
   "docs": {
-    "Getting Started": ["introduction", "install"],
-    "Custom Hooks": ["use-storage", "use-async"],
-    "Functions": ["create-memory-storage"],
-    "Interfaces": ["storage"]
+    "Getting Started": [
+      "introduction",
+      "install"
+    ],
+    "Custom Hooks": [
+      "use-storage",
+      "use-async",
+      "use-fetch"
+    ],
+    "Functions": [
+      "create-memory-storage",
+      "get-default-storage",
+      "set-default-storage",
+      "get-async-storage",
+      "set-async-storage",
+      "get-fetch-key",
+      "get-fetch-storage",
+      "set-fetch-storage"
+    ],
+    "Interfaces": [
+      "storage"
+    ]
   }
 }
