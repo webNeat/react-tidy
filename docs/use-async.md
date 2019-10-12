@@ -5,11 +5,11 @@ title: useAsync
 Makes it possible to call an asynchronous function from a component and wait for the result before rendering that component. The component using this hook should be rendered inside a `React.Suspense` in order to properly render the fallback while waiting for the async function.
 
 ```typescript
-function useAsync(
+function useAsync<T>(
   key: string,
-  fn: () => Promise,
+  fn: () => Promise<T>,
   storage: Storage = defaultAsyncStorage
-)
+): [T, function]
 ```
 
 ## Parameters
@@ -18,7 +18,7 @@ function useAsync(
 
 `fn`: The asynchronous function.
 
-`storage` __(optional)__: a [`Storage`](storage.md) where to store the result of the function.
+`storage` _(optional)_: a [`Storage`](storage.md) where to store the result of the function. The default storage is [a memory storage](create-memory-storage.md) which you can get using [getAsyncStorage](get-async-storage.md) and override using [setAsyncStorage](set-async-storage.md).
 
 ## Usage
 

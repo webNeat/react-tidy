@@ -4,6 +4,10 @@ title: createMemoryStorage
 
 Creates a storage object that stores data in memory and implements the [Storage](storage.md) interface. Similar to `window.sessionStorage` but the data is lost once the page is closed or reloaded.
 
+```typescript
+function createMemoryStorage(): Storage
+```
+
 ## Usage
 ```typescript
 import {createMemoryStorage} from 'react-tidy'
