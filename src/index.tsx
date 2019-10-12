@@ -3,4 +3,4 @@ export * from './storages'
 
 export * from './useStorage'
 export * from './useAsync'
-export * from './useFetch'
+export * from './useResponse'

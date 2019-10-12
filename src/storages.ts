@@ -2,9 +2,9 @@ import { createMemoryStorage } from './createMemoryStorage'
 import { Storage } from './types'
 
 const storages = {
-  default: createMemoryStorage(),
   async: createMemoryStorage(),
-  fetch: createMemoryStorage(),
+  default: createMemoryStorage(),
+  response: createMemoryStorage(),
 }
 
 export const getDefaultStorage = () => storages.default
@@ -17,7 +17,7 @@ export const setAsyncStorage = (storage: Storage) => {
   storages.async = storage
 }
 
-export const getFetchStorage = () => storages.fetch
-export const setFetchStorage = (storage: Storage) => {
-  storages.fetch = storage
+export const getResponseStorage = () => storages.response
+export const setResponseStorage = (storage: Storage) => {
+  storages.response = storage
 }

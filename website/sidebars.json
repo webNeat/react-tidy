@@ -7,7 +7,7 @@
     "Custom Hooks": [
       "use-storage",
       "use-async",
-      "use-fetch"
+      "use-response"
     ],
     "Functions": [
       "create-memory-storage",
@@ -16,8 +16,8 @@
       "get-async-storage",
       "set-async-storage",
       "get-fetch-key",
-      "get-fetch-storage",
-      "set-fetch-storage"
+      "get-response-storage",
+      "set-response-storage"
     ],
     "Interfaces": [
       "storage"

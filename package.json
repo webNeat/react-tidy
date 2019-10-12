@@ -1,6 +1,6 @@
 {
   "name": "react-tidy",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-beta.1",
   "main": "dist/index.js",
   "module": "dist/react-tidy.esm.js",
   "typings": "dist/index.d.ts",
