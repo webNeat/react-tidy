@@ -1,9 +1,9 @@
 ---
-title: FetchOptions
+title: RequestOptions
 ---
 
 ```typescript
-type FetchOptions = {
+type RequestOptions = {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE'
   headers: {[key: string]: string}
   body: string | URLSearchParams | FormData | Blob | ArrayBuffer | DataView

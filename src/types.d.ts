@@ -5,11 +5,11 @@ export interface Storage {
   clear: () => void
 }
 
-export type FetchOptions = {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE'
-  headers: { [key: string]: string }
-  body: string | URLSearchParams | FormData | Blob | ArrayBuffer | DataView
-  credentials: 'omit' | 'same-origin' | 'include'
+export type RequestOptions = {
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
+  headers?: { [key: string]: string }
+  body?: string | URLSearchParams | FormData | Blob | ArrayBuffer | DataView
+  credentials?: 'omit' | 'same-origin' | 'include'
 }
 
 export type Fn<T> = () => T
