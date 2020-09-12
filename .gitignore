@@ -7,5 +7,5 @@ node_modules
 .rts2_cache_umd
 dist
 *.code-workspace
-website/build
 coverage
+tmp

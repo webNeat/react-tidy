@@ -11,37 +11,33 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --env=jsdom",
-    "test-coverage": "tsdx test --env=jsdom --coverage --coverageReporters=text-lcov | coveralls"
+    "test-coverage": "tsdx test --env=jsdom --coverage"
   },
   "peerDependencies": {
     "react": ">=16"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "prettier": {
-    "printWidth": 80,
     "semi": false,
+    "printWidth": 120,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "bracketSpacing": false
   },
   "devDependencies": {
-    "@testing-library/react": "^9.1.4",
-    "@testing-library/react-hooks": "^2.0.1",
-    "@types/jest": "^24.0.18",
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "^16.9.0",
-    "coveralls": "^3.0.6",
-    "husky": "^3.0.4",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-test-renderer": "^16.9.0",
-    "tsdx": "^0.8.0",
-    "tslib": "^1.10.0",
-    "typescript": "^3.5.3"
+    "@testing-library/dom": "^7.24.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.2",
+    "@testing-library/react-hooks": "^3.4.1",
+    "@testing-library/user-event": "^12.1.4",
+    "@types/jest": "^26.0.13",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "prettier": "^2.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
+    "tsdx": "^0.13.3",
+    "tslib": "^2.0.1",
+    "typescript": "^3.9.7"
   }
 }
