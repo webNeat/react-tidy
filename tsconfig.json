@@ -1,5 +1,5 @@
 {
-  "include": ["src", "types", "archive/types.d.ts", "archive/useResponse.ts"],
+  "include": ["src", "types"],
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
