@@ -1,4 +1,4 @@
-import {useIsMounted} from '../src'
+import {useIsMounted} from './useIsMounted'
 import {renderHook, act, cleanup} from '@testing-library/react-hooks'
 
 describe('useIsMounted', () => {

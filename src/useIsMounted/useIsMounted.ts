@@ -7,5 +7,5 @@ export function useIsMounted() {
       ref.current = false
     }
   }, [])
-  return () => ref.current
+  return React.useCallback(() => ref.current, [])
 }

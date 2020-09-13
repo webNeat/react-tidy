@@ -14,7 +14,7 @@
     "test-coverage": "tsdx test --env=jsdom --coverage"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16.8"
   },
   "prettier": {
     "semi": false,

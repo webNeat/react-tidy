@@ -1,6 +1,6 @@
 import React from 'react'
-import {Lazy, resolve} from './internals'
-import {useIsMounted} from './useIsMounted'
+import {useIsMounted} from '..'
+import {Lazy, resolve} from '../internals'
 
 export function useStorageItem<T>(key: string, initialValue: Lazy<T> = null, storage = window.localStorage) {
   const storedString = storage.getItem(key)

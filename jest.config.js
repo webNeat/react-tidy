@@ -1,5 +1,5 @@
 module.exports = {
-  setupFilesAfterEnv: ['./test/setup.ts'],
+  setupFilesAfterEnv: ['./testsSetup.ts'],
   coverageDirectory: './coverage',
   coverageReporters: ['lcov'],
 }

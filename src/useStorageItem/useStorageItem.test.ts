@@ -1,4 +1,4 @@
-import {useStorageItem} from '../src'
+import {useStorageItem} from './useStorageItem'
 import {renderHook, act, cleanup} from '@testing-library/react-hooks'
 
 describe('useStorageItem', () => {
