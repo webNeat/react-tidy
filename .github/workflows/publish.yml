@@ -12,6 +12,9 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm run build
-      - run: npm publish
+      - uses: mikeal/merge-release@master
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DEPLOY_DIR: .
+          SRC_PACKAGE_DIR: .
