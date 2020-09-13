@@ -1,9 +1,9 @@
-name: Code verifications
+name: Tests
 on:
-  pull_request:
+  push:
     branches: [master]
 jobs:
-  verify_code:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
