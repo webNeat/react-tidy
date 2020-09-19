@@ -9,3 +9,4 @@ dist
 *.code-workspace
 coverage
 tmp
+demo

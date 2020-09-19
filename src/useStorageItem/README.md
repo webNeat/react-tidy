@@ -1,7 +1,7 @@
 # useStorageItem
 
 ```ts
-function useStorageItem<T>(key: string, initialValue: Value<T>, storage: Storage): StorageItem<T>
+function useStorageItem(key: string, initialValue: Value, storage: Storage): StorageItem
 ```
 
 Provides a convenient way to read and write items to the browser storage.
