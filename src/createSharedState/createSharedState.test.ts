@@ -5,7 +5,7 @@ describe('createSharedState', () => {
   afterEach(cleanup)
 
   it(`behaves like React.useState`, () => {
-    const useCounter = createSharedState(0)
+    const useCounter = createSharedState('foo', 0)
     const {result} = renderHook(() => useCounter())
     expect(result.current[0]).toBe(0)
     act(() => {
@@ -19,7 +19,7 @@ describe('createSharedState', () => {
   })
 
   it(`shares the state between multiple calls using the same store`, () => {
-    const useCounter = createSharedState(0)
+    const useCounter = createSharedState('bar', 0)
     const {result: a} = renderHook(() => useCounter())
     const {result: b} = renderHook(() => useCounter())
     expect(a.current[0]).toBe(0)
@@ -29,5 +29,17 @@ describe('createSharedState', () => {
     })
     expect(a.current[0]).toBe(5)
     expect(b.current[0]).toBe(5)
+  })
+
+  it(`reads the stored state if already exists`, () => {
+    const useCounter = createSharedState('baz', 0)
+    let hook = renderHook(() => useCounter())
+    act(() => {
+      hook.result.current[1](11)
+    })
+    hook.unmount()
+
+    hook = renderHook(() => useCounter())
+    expect(hook.result.current[0]).toBe(11)
   })
 })

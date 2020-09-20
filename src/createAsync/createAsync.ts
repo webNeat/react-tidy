@@ -1,5 +1,6 @@
-import {StrMap} from '../internals'
-import {createSharedState} from '..'
+import React from 'react'
+import {getStore} from '../store'
+import {useRefresh} from '../useRefresh/useRefresh'
 
 type AsyncFn<T> = (...args: any[]) => Promise<T>
 
@@ -7,35 +8,45 @@ type State<T> = {
   data?: T
   error: any
   isLoading: boolean
-  promise?: Promise<void>
+  hasResult: boolean
   timestamp: number
 }
 
-export function createAsync<T, F extends AsyncFn<T>>(fn: F, cacheDuration = 300) {
-  const useSharedStore = createSharedState<StrMap<State<T>>>({})
+export function createAsync<T, F extends AsyncFn<T>>(key: string, fn: F) {
+  const store = getStore()
+  key = 'async:' + key
   return (...args: Parameters<F>) => {
-    const key = JSON.stringify(args)
-    const [store, setStore] = useSharedStore()
-    const refresh = () => {
-      const promise = fn(...args)
-        .then((data) => setStore((x) => ({...x, [key]: {data, error: null, isLoading: false, timestamp: now()}})))
-        .catch((error) =>
-          setStore((x) => ({...x, [key]: {data: undefined, error, isLoading: false, timestamp: now()}}))
-        )
-      setStore(
-        (x) => ({...x, [key]: {data: undefined, error: null, isLoading: true, promise, timestamp: now()}}),
-        false
-      )
-      return promise
-    }
-    const state = store[key]
-    if (state === undefined || state.timestamp < now() - cacheDuration) throw refresh()
-    if (state.isLoading) throw state.promise
-    if (state.error) throw state.error
-    return [state.data, refresh] as [T, () => Promise<void>]
-  }
-}
+    const callKey = JSON.stringify({key, args})
+    const getStored = React.useCallback(() => store.get(callKey), [callKey])
+    const setStored = React.useCallback((value: State<T>) => store.set(callKey, value), [callKey])
 
-function now() {
-  return Date.now() / 1000
+    if (getStored() === undefined) {
+      setStored({data: undefined, error: undefined, hasResult: false, isLoading: false, timestamp: 0})
+    }
+
+    const load = () => {
+      setStored({...getStored(), isLoading: true, timestamp: Date.now()})
+      fn(...args)
+        .then((data) => setStored({data, error: undefined, hasResult: true, isLoading: false, timestamp: Date.now()}))
+        .catch((error) => setStored({data: undefined, error, hasResult: true, isLoading: false, timestamp: Date.now()}))
+    }
+
+    const refresh = useRefresh()
+
+    React.useEffect(() => {
+      refresh()
+      store.addListener(callKey, refresh)
+      return () => store.removeListener(callKey, refresh)
+    }, [callKey])
+
+    React.useEffect(() => {
+      const current = getStored()
+      if (!current.hasResult && !current.isLoading) load()
+    }, [callKey])
+
+    const reload = () => {
+      if (!getStored().isLoading) load()
+    }
+    return {...getStored(), reload} as State<T> & {reload: () => void}
+  }
 }

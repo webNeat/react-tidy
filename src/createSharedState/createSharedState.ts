@@ -1,33 +1,25 @@
 import React from 'react'
+import {getStore} from '../store'
 import {isFunction} from '../internals'
+import {useRefresh} from '../useRefresh/useRefresh'
 
 type Value<T> = T | ((x: T) => T)
-type Subscriber<T> = (value: T) => void
 
-export function createSharedState<T>(initialState: T) {
-  let data = initialState
-  const subscribers = new Set<Subscriber<T>>()
-  const setValue = (value: Value<T>, notify = true) => {
-    if (isFunction(value)) {
-      value = (value as any)(data)
-    }
-    data = value as T
-    if (notify) {
-      subscribers.forEach((fn) => fn(data))
-    }
+export function createSharedState<T>(key: string, initialState: T) {
+  key = 'state:' + key
+  const store = getStore()
+  if (store.get(key) === undefined) {
+    store.set(key, initialState)
   }
-
   return () => {
-    const [state, setState] = React.useState(data)
+    const refresh = useRefresh()
     React.useEffect(() => {
-      subscribers.add(setState)
-      return () => {
-        subscribers.delete(setState)
-        if (subscribers.size === 0) {
-          data = initialState
-        }
-      }
+      store.addListener(key, refresh)
+      return () => store.removeListener(key, refresh)
     }, [])
-    return [state, setValue] as [T, (value: Value<T>, notify?: boolean) => void]
+    const setValue = (value: Value<T>) => {
+      store.set(key, isFunction(value) ? (value as any)(store.get(key)) : value)
+    }
+    return [store.get(key), setValue] as [T, typeof setValue]
   }
 }

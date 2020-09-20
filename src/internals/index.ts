@@ -1,3 +1,3 @@
 export * from './types'
-export * from './resolve'
-export * from './isFunction'
+export * from './classes'
+export * from './functions'
