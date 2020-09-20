@@ -37,7 +37,7 @@ const useCurrentUser = createAsync('current-user', async () => {
 })
 
 const Navbar = () => {
-  const res = useCurrentUser(token)
+  const res = useCurrentUser()
   if (res.isLoading) return <nav>Loading ...</nav>
   return <nav>Welcome {res.data ? res.data.name : 'Visitor'}</nav>
 }
