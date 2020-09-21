@@ -17,8 +17,7 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --env=jsdom",
-    "test-coverage": "tsdx test --env=jsdom --coverage",
-    "clean": "rm -rf .github src .gitignore jest.config.js testsSetup.ts tsconfig.json"
+    "test-coverage": "tsdx test --env=jsdom --coverage"
   },
   "peerDependencies": {
     "react": ">=16.8"

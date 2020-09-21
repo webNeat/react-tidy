@@ -14,7 +14,6 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm run build
-      - run: npm run clean
       - name: Publish to npm
         uses: pascalgn/npm-publish-action@1.3.3
         env:
