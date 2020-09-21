@@ -1,17 +1,17 @@
 import React from 'react'
-import {getStore} from '../store'
 import {isFunction} from '../internals'
+import {StoreContext} from '../store'
 import {useRefresh} from '../useRefresh/useRefresh'
 
 type Value<T> = T | ((x: T) => T)
 
 export function createSharedState<T>(key: string, initialState: T) {
   key = 'state:' + key
-  const store = getStore()
-  if (store.get(key) === undefined) {
-    store.set(key, initialState)
-  }
   return () => {
+    const store = React.useContext(StoreContext)
+    if (store.get(key) === undefined) {
+      store.set(key, initialState)
+    }
     const refresh = useRefresh()
     React.useEffect(() => {
       store.addListener(key, refresh)

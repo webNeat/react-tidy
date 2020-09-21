@@ -39,6 +39,10 @@ export class Store {
     this.listeners[key].add(fn)
   }
 
+  hasListeners(key: string) {
+    return this.listeners[key] && this.listeners[key].size > 0
+  }
+
   removeListener(key: string, fn: Listener) {
     if (this.listeners[key] !== undefined) {
       this.listeners[key].delete(fn)

@@ -34,5 +34,5 @@ yarn add react-tidy
 
 # High Order Custom Hooks
 
-- [createSharedState](src/createSharedState) Share state between multiple components without a React Context.
+- [createSharedState](src/createSharedState) Share state between multiple components.
 - [createAsync](src/createAsync) Run asynchronous functions and cache and share their results between multiple components.

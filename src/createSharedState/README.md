@@ -4,7 +4,7 @@
 function createSharedState(key: string, initialState): SharedStateHook
 ```
 
-Creates a React custom hook that can be used to share state between multiple components at different levels without a React Context.
+Creates a React custom hook that can be used to share state between multiple components at different levels.
 
 **Arguments**
 
