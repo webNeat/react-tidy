@@ -1,8 +1,14 @@
 {
   "name": "react-tidy",
   "version": "0.0.1-beta.3",
+  "description": "A collection of handy, flexible, typed, tested and documented React custom hooks",
+  "author": "Amine Ben hammou (@webNeat)",
+  "license": "MIT",
+  "repository": "webNeat/react-tidy",
+  "homepage": "https://github.com/webNeat/react-tidy#react-tidy",
   "main": "dist/index.js",
   "module": "dist/react-tidy.esm.js",
+  "types": "types/index.d.ts",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
@@ -11,7 +17,8 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --env=jsdom",
-    "test-coverage": "tsdx test --env=jsdom --coverage"
+    "test-coverage": "tsdx test --env=jsdom --coverage",
+    "clean": "rm -rf .github src .gitignore jest.config.js testsSetup.ts tsconfig.json"
   },
   "peerDependencies": {
     "react": ">=16.8"
