@@ -1,25 +1,29 @@
 import React from 'react'
-import {isFunction} from '../internals'
-import {StoreContext} from '../store'
 import {useRefresh} from '../useRefresh/useRefresh'
+import {isFunction, Lazy, resolve, Store} from '../internals'
 
 type Value<T> = T | ((x: T) => T)
 
-export function createSharedState<T>(key: string, initialState: T) {
-  key = 'state:' + key
+export function createSharedState<T>(initialValueOrFn: Lazy<T>) {
+  let store: Store<T>
+
   return () => {
-    const store = React.useContext(StoreContext)
-    if (store.get(key) === undefined) {
-      store.set(key, initialState)
+    if (!store) {
+      store = new Store(resolve(initialValueOrFn))
     }
     const refresh = useRefresh()
     React.useEffect(() => {
-      store.addListener(key, refresh)
-      return () => store.removeListener(key, refresh)
+      store.addListener(refresh)
+      return () => {
+        store.removeListener(refresh)
+        if (!store.hasListeners()) {
+          store = null as any
+        }
+      }
     }, [])
     const setValue = (value: Value<T>) => {
-      store.set(key, isFunction(value) ? (value as any)(store.get(key)) : value)
+      store.set(isFunction(value) ? (value as any)(store.get()) : value)
     }
-    return [store.get(key), setValue] as [T, typeof setValue]
+    return [store.get(), setValue] as [T, typeof setValue]
   }
 }

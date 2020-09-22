@@ -1,6 +1,6 @@
 import {renderHook, act, cleanup} from '@testing-library/react-hooks'
-import {getStoredData, setStoredData} from '../store'
 import {createAsync} from './createAsync'
+import {defaultAsyncCache} from './AsyncCacheProvider'
 
 describe('createAsync', () => {
   beforeEach(() => {
@@ -185,10 +185,11 @@ describe('createAsync', () => {
     hook = renderHook(() => useAsync())
     expect(fn).toBeCalledTimes(1)
 
-    const key = JSON.stringify({key: 'async:rerunIfOlder', args: []})
+    const key = JSON.stringify(['rerunIfOlder', []])
     act(() => {
-      setStoredData({
-        [key]: {...hook.result.current, timestamp: Date.now() - 500},
+      const timestamp = Date.now() - 500
+      defaultAsyncCache.setData({
+        [key]: {...hook.result.current, timestamp},
       })
     })
 
@@ -206,14 +207,14 @@ describe('createAsync', () => {
       jest.advanceTimersByTime(500)
     })
     hook.unmount()
-    const key = JSON.stringify({key: 'async:square', args: [5]})
-    let data = getStoredData()
+    const key = JSON.stringify(['square', [5]])
+    let data = defaultAsyncCache.getData()
     expect(data[key]).toMatchObject({data: 25})
 
     act(() => {
       jest.advanceTimersByTime(1000)
     })
-    data = getStoredData()
+    data = defaultAsyncCache.getData()
     expect(data[key]).toBeUndefined()
   })
 
@@ -224,15 +225,15 @@ describe('createAsync', () => {
       jest.advanceTimersByTime(500)
     })
     hook.unmount()
-    const key = JSON.stringify({key: 'async:square', args: [7]})
-    let data = getStoredData()
+    const key = JSON.stringify(['square', [7]])
+    let data = defaultAsyncCache.getData()
     expect(data[key]).toMatchObject({data: 49})
 
     await act(async () => {
       renderHook(() => useSquare([7], {clearCacheIfUnusedFor: 1000}))
       jest.advanceTimersByTime(1000)
     })
-    data = getStoredData()
+    data = defaultAsyncCache.getData()
     expect(data[key]).toMatchObject({data: 49})
   })
 })

@@ -2,4 +2,4 @@ export type StrMap<T> = {
   [key: string]: T
 }
 
-export type Lazy<T> = T | null | (() => T | null)
+export type Lazy<T> = T | (() => T)

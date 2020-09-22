@@ -1,75 +1,57 @@
 import React from 'react'
-import {StoreContext} from '../store'
 import {useRefresh} from '../useRefresh/useRefresh'
+import {AsyncCacheContext} from './AsyncCacheProvider'
+import {AsyncFn, AsyncOptions, AsyncState} from './types'
 
-type AsyncFn<T> = (...args: any[]) => Promise<T>
-type AsyncOptions = {
-  autoRun: boolean
-  rerunIfOlderThen: number
-  clearCacheIfUnusedFor: number
-}
-
-type State<T> = {
-  data?: T
-  error: any
-  isLoading: boolean
-  hasResult: boolean
-  timestamp: number
-  timeout?: NodeJS.Timeout
-}
-
-const defaultAsyncOptions: AsyncOptions = {
+let defaultAsyncOptions: AsyncOptions = {
   autoRun: true,
   rerunIfOlderThen: 30000,
   clearCacheIfUnusedFor: 30000,
 }
 
-export function createAsync<T, F extends AsyncFn<T>>(key: string, fn: F, options: Partial<AsyncOptions> = {}) {
-  key = 'async:' + key
-  options = {...defaultAsyncOptions, ...options}
-  return (args: Parameters<F> = [] as any, opts: Partial<AsyncOptions> = {}) => {
-    const store = React.useContext(StoreContext)
-    const callKey = JSON.stringify({key, args})
-    const getStored = React.useCallback(() => store.get(callKey) as State<T>, [callKey])
-    const setStored = React.useCallback((value?: State<T>) => store.set(callKey, value), [callKey])
-    const settings = {...options, ...opts} as AsyncOptions
+export function setDefaultAsyncOptions(options: AsyncOptions) {
+  defaultAsyncOptions = options
+}
 
-    if (getStored() === undefined) {
-      setStored({data: undefined, error: undefined, hasResult: false, isLoading: false, timestamp: 0})
-    }
-
-    const load = () => {
-      setStored({...getStored(), isLoading: true, timestamp: Date.now()})
-      fn(...args)
-        .then((data) => setStored({data, error: undefined, hasResult: true, isLoading: false, timestamp: Date.now()}))
-        .catch((error) => setStored({data: undefined, error, hasResult: true, isLoading: false, timestamp: Date.now()}))
-    }
+export function createAsync<Args extends any[], T>(
+  fnKey: string,
+  fn: AsyncFn<Args, T>,
+  fnOptions: Partial<AsyncOptions> = {}
+) {
+  fnOptions = {...defaultAsyncOptions, ...fnOptions}
+  return (args: Args = [] as any, options: Partial<AsyncOptions> = {}) => {
+    const key = JSON.stringify([fnKey, args])
+    const settings = {...fnOptions, ...options} as AsyncOptions
 
     const refresh = useRefresh()
+    const cache = React.useContext(AsyncCacheContext)
+    if (!cache.has(key)) cache.create(key)
+
+    const store = cache.get(key)
 
     React.useEffect(() => {
-      const current = getStored()
-      if (current.timeout) clearTimeout(current.timeout)
-      store.addListener(callKey, refresh)
+      store.clearTimeout()
+      const state = store.get() as AsyncState<T>
+      store.addListener(refresh)
       if (
         settings.autoRun &&
-        !current.isLoading &&
-        (!current.hasResult || current.timestamp < Date.now() - settings.rerunIfOlderThen)
+        !state.isLoading &&
+        (!state.hasResult || state.timestamp < Date.now() - settings.rerunIfOlderThen)
       ) {
-        load()
+        store.run(fn, args)
       }
       return () => {
-        store.removeListener(callKey, refresh)
-        if (!store.hasListeners(callKey)) {
-          const timeout = setTimeout(() => setStored(undefined), settings.clearCacheIfUnusedFor)
-          setStored({...getStored(), timeout})
+        store.removeListener(refresh)
+        if (!store.hasListeners()) {
+          store.setTimeout(() => cache.delete(key), settings.clearCacheIfUnusedFor)
         }
       }
-    }, [callKey])
+    }, [key])
 
     const run = () => {
-      if (!getStored().isLoading) load()
+      const state = store.get() as AsyncState<T>
+      if (!state.isLoading) store.run(fn, args)
     }
-    return {...getStored(), run} as State<T> & {run: () => void}
+    return {...store.get(), run} as AsyncState<T> & {run: () => void}
   }
 }

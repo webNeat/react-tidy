@@ -1,51 +1,32 @@
-import {StrMap} from '../types'
+type Listener<T> = (value?: T) => void
 
-type Listener = (value: any) => void
+export class Store<T> {
+  data?: T
+  listeners: Set<Listener<T>>
 
-export class Store {
-  data: StrMap<any> = {}
-  listeners: StrMap<Set<Listener>> = {}
-
-  set(key: string, value: any) {
-    this.data[key] = value
-    if (this.listeners[key] !== undefined) {
-      this.listeners[key].forEach((fn) => fn(value))
-    }
+  constructor(data?: T) {
+    this.data = data
+    this.listeners = new Set()
   }
 
-  get(key: string) {
-    return this.data[key]
+  get() {
+    return this.data
   }
 
-  getAll() {
-    return {...this.data}
+  set(value?: T) {
+    this.data = value
+    this.listeners.forEach((fn) => fn(value))
   }
 
-  clear() {
-    this.data = {}
-    this.listeners = {}
+  hasListeners() {
+    return this.listeners.size > 0
   }
 
-  setAll(data: StrMap<any>) {
-    for (const key in data) {
-      this.set(key, data[key])
-    }
+  addListener(fn: Listener<T>) {
+    this.listeners.add(fn)
   }
 
-  addListener(key: string, fn: Listener) {
-    if (this.listeners[key] === undefined) {
-      this.listeners[key] = new Set()
-    }
-    this.listeners[key].add(fn)
-  }
-
-  hasListeners(key: string) {
-    return this.listeners[key] && this.listeners[key].size > 0
-  }
-
-  removeListener(key: string, fn: Listener) {
-    if (this.listeners[key] !== undefined) {
-      this.listeners[key].delete(fn)
-    }
+  removeListener(fn: Listener<T>) {
+    this.listeners.delete(fn)
   }
 }
