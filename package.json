@@ -1,7 +1,7 @@
 {
   "name": "react-tidy",
   "version": "0.0.1-beta.5",
-  "description": "A collection of handy, flexible, typed, tested and documented React custom hooks",
+  "description": "A collection of atomic, independent, typed, tested and documented React custom hooks",
   "author": "Amine Ben hammou (@webNeat)",
   "license": "MIT",
   "repository": "webNeat/react-tidy",
@@ -38,7 +38,6 @@
     "@types/jest": "^26.0.13",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
-    "parcel-bundler": "^1.12.4",
     "prettier": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

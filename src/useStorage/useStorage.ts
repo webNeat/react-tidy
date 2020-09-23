@@ -1,8 +1,7 @@
 import React from 'react'
 import {useIsMounted} from '..'
-import {Lazy, resolve} from '../internals'
 
-export function useStorageItem<T>(key: string, initialValue: Lazy<T> | null = null, storage = window.localStorage) {
+export function useStorage<T>(key: string, initialValue: T | null = null, storage = window.localStorage) {
   const storedString = storage.getItem(key)
   if (storedString !== null) {
     initialValue = JSON.parse(storedString)
@@ -16,8 +15,7 @@ export function useStorageItem<T>(key: string, initialValue: Lazy<T> | null = nu
   }, [key, initialValue, storage])
 
   const setItem = React.useCallback(
-    (x: Lazy<T | null>) => {
-      const newValue = resolve(x)
+    (newValue: T | null) => {
       if (newValue === null) {
         storage.removeItem(key)
       } else {
