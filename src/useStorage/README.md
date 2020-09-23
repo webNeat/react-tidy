@@ -18,10 +18,10 @@ Provides a convenient way to read and write items to the browser storage.
 
 ```tsx
 import React from 'react'
-import {useStorageItem} from 'react-tidy'
+import {useStorage} from 'react-tidy'
 
 function MyComponent() {
-  const [token, setToken] = useStorageItem('token')
+  const [token, setToken] = useStorage('token')
   // ...
 }
 ```
