@@ -57,6 +57,6 @@ You can contribute to this library in many ways, including:
 
 - **Reporting bugs**: Simply open an issue and describe the bug. Please include a code snippet to reproduce the bug, it really helps to solve the problem quickly.
 
-- **Suggesting new hooks**: If you have a common use case that you think worth having its own hook, open an issue and we will discuss it. Do you already have an implementation for it? great, make a pull request and I will review it. Please make sure your code is consistent with the rest of the codebase and use [Prettier](https://prettier.io/) to format it.
+- **Suggesting new hooks**: If you have a common use case that you think worth having its own hook, open an issue and we will discuss it. Do you already have an implementation for it? great, make a pull request and I will review it. Please make sure your code is consistent with the rest of the codebase and use [Prettier](https://prettier.io/) and [EditorConfig](https://editorconfig.org/) to format your files.
 
 Those are just examples, any issue or pull request is welcome :)

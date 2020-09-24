@@ -22,13 +22,6 @@
   "peerDependencies": {
     "react": ">=16.8"
   },
-  "prettier": {
-    "semi": false,
-    "printWidth": 120,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "bracketSpacing": false
-  },
   "devDependencies": {
     "@testing-library/dom": "^7.24.1",
     "@testing-library/jest-dom": "^5.11.4",
