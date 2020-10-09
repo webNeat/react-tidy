@@ -24,7 +24,7 @@ describe('useStorage', () => {
     act(() => result.current[1](4))
     expect(result.current[0]).toEqual(4)
     expect(localStorage.getItem('counter')).toBe('4')
-    act(() => result.current[1](5))
+    act(() => result.current[1]((x) => (x as number) + 1))
     expect(result.current[0]).toEqual(5)
     expect(localStorage.getItem('counter')).toBe('5')
   })
