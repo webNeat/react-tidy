@@ -1,21 +1,34 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import {useIsMounted} from '..'
+import {isFunction, isInBrowser} from '../utils'
+import {getDefaultStorage} from './defaultStorage'
+import {createMemoryStorage} from './createMemoryStorage'
 
-export function useStorage<T>(key: string, initialValue: T | null = null, storage = window.localStorage) {
+type Value<T> = T | null | ((x: T | null) => T | null)
+
+export function useStorage<T>(key: string, defaultValue: T | null = null, getStorage = getDefaultStorage()) {
+  const storage = useMemo<Storage>(() => {
+    if (!isInBrowser()) return createMemoryStorage()
+    if (isFunction(getStorage)) return (getStorage as any)()
+    return getStorage
+  }, [getStorage])
   const storedString = storage.getItem(key)
   if (storedString !== null) {
-    initialValue = JSON.parse(storedString)
+    defaultValue = JSON.parse(storedString)
   }
-  const [value, setValue] = React.useState<T | null>(initialValue)
+  const [value, setValue] = React.useState<T | null>(defaultValue)
   const isMounted = useIsMounted()
   React.useEffect(() => {
-    if (storedString === null && initialValue !== null) {
-      storage.setItem(key, JSON.stringify(initialValue))
+    if (storedString === null && defaultValue !== null) {
+      storage.setItem(key, JSON.stringify(defaultValue))
     }
-  }, [key, initialValue, storage])
+  }, [key, defaultValue, storage])
 
   const setItem = React.useCallback(
-    (newValue: T | null) => {
+    (newValue: Value<T>) => {
+      if (isFunction(newValue)) {
+        newValue = (newValue as any)(value)
+      }
       if (newValue === null) {
         storage.removeItem(key)
       } else {
@@ -25,7 +38,7 @@ export function useStorage<T>(key: string, initialValue: T | null = null, storag
         setValue(newValue)
       }
     },
-    [storage, key]
+    [storage, key, value]
   )
 
   return [value, setItem] as [T | null, typeof setItem]
