@@ -16,6 +16,7 @@ A collection of atomic, independent, typed, tested and documented React custom h
 - [Installation](#installation)
 - [List of Custom Hooks](#list-of-custom-hooks)
 - [Contributing](#contributing)
+- [Changelog](#changelog)
 
 ## What is React Tidy?
 
@@ -60,3 +61,11 @@ You can contribute to this library in many ways, including:
 - **Suggesting new hooks**: If you have a common use case that you think worth having its own hook, open an issue and we will discuss it. Do you already have an implementation for it? great, make a pull request and I will review it. Please make sure your code is consistent with the rest of the codebase and use [Prettier](https://prettier.io/) and [EditorConfig](https://editorconfig.org/) to format your files.
 
 Those are just examples, any issue or pull request is welcome :)
+
+## Changelog
+
+**1.1.0 (October 9, 2020)**
+Make [useStorage](src/useStorage) able to work on the server to enable SSR.
+
+**1.0.0 (September 23, 2020)**
+The first official release containing 3 hooks [useIsMounted](src/useIsMounted), [useRefresh](src/useRefresh) and [useStorage](src/useStorage).
