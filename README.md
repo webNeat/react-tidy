@@ -64,6 +64,9 @@ Those are just examples, any issue or pull request is welcome :)
 
 ## Changelog
 
+**1.1.1 (December 29, 2020)**
+Upgrade dev dependencies.
+
 **1.1.0 (October 9, 2020)**
 Make [useStorage](src/useStorage) able to work on the server to enable SSR.
 
