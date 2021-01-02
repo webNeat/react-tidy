@@ -65,6 +65,9 @@ Those are just examples, any issue or pull request is welcome :)
 
 ## Changelog
 
+**1.2.1 (January 2nd, 2021)**
+Fix the bug of [usePrevious](src/usePrevious) not being exported.
+
 **1.2.0 (January 2nd, 2021)**
 Add [usePrevious](src/usePrevious) hook.
 
