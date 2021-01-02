@@ -1,5 +1,5 @@
 import React from 'react'
-import {useIsMounted} from '..'
+import {useIsMounted} from '../useIsMounted/useIsMounted'
 
 export function useRefresh() {
   const [, setVersion] = React.useState(0)

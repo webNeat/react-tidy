@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react'
-import {useIsMounted} from '..'
+import {useIsMounted} from '../useIsMounted/useIsMounted'
 import {isFunction, isInBrowser} from '../utils'
 import {getDefaultStorage} from './defaultStorage'
 import {createMemoryStorage} from './createMemoryStorage'
