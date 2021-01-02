@@ -1,6 +1,6 @@
 {
   "name": "react-tidy",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A collection of atomic, independent, typed, tested and documented React custom hooks",
   "author": "Amine Ben hammou (@webNeat)",
   "license": "MIT",

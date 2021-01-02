@@ -65,6 +65,9 @@ Those are just examples, any issue or pull request is welcome :)
 
 ## Changelog
 
+**1.2.0 (January 2nd, 2021)**
+Add [usePrevious](src/usePrevious) hook.
+
 **1.1.1 (December 29, 2020)**
 Upgrade dev dependencies.
 
