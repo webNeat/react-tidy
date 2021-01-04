@@ -49,6 +49,7 @@ yarn add react-tidy
 ## List of Custom Hooks
 
 - [useIsMounted](src/useIsMounted) Avoid using/updating state of unmounted components.
+- [useInstance](src/useInstance) Create an instance of any class and make your component react to its changes.
 - [usePrevious](src/usePrevious) Track previous values of a variable.
 - [useRefresh](src/useRefresh) Rerender your React component whenever you want.
 - [useStorage](src/useStorage) read and write items on browser storages the React way.
