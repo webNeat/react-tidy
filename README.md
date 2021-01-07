@@ -66,6 +66,11 @@ Those are just examples, any issue or pull request is welcome :)
 
 ## Changelog
 
+**1.3.0 (January 7th, 2021)**
+
+- Add [useInstance](src/useInstance) hook.
+- Fix a bug on [useStorage](src/useStorage) when setting the item to `null`.
+
 **1.2.1 (January 2nd, 2021)**
 Fix the bug of [usePrevious](src/usePrevious) not being exported.
 
