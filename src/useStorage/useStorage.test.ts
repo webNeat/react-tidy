@@ -30,7 +30,7 @@ describe('useStorage', () => {
   })
   it('removes the value from storage and sets it as null', () => {
     localStorage.setItem('token', JSON.stringify({foo: 'bar'}))
-    const {result} = renderHook(() => useStorage('token'))
+    const {result} = renderHook(() => useStorage('token', 'initial'))
     act(() => result.current[1](null))
     expect(result.current[0]).toBe(null)
     expect(localStorage.getItem('token')).toBe(null)
