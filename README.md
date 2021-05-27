@@ -66,6 +66,10 @@ Those are just examples, any issue or pull request is welcome :)
 
 ## Changelog
 
+**1.3.1 (May 27th, 2021)**
+
+- Updating dev dependencies and improving docs.
+
 **1.3.0 (January 7th, 2021)**
 
 - Add [useInstance](src/useInstance) hook.
