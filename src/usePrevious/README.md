@@ -17,21 +17,24 @@ function usePrevious(state: T, count: number = 1): T[]
 import React from 'react'
 import {usePrevious} from 'react-tidy'
 
-function Search() {
-  const queryRef = React.useRef()
-  const [query, setQuery] = React.useState('')
-  const lastThreeQueries = usePrevious(query, 3)
+function random() {
+  return Math.floor(100 * Math.random())
+}
+
+function RandomNumbers() {
+  const [value, setValue] = React.useState(random())
+  const lastThreeValues = usePrevious(value, 3)
 
   return (
     <div>
-      <input ref={queryRef} type="text" />
-      <button onClick={() => setQuery(queryRef.current.value)}>Search</button>
-      <br />
-      <ul>
-        {lastThreeQueries.map((previousQuery) => (
-          <li>{previousQuery}</li>
-        ))}
-      </ul>
+      <p>
+        Random integer between 0 and 100: <strong>{value}</strong>
+      </p>
+      <button onClick={() => setValue(random())}>Generate</button>
+      <p>Last 3 different values:</p>
+      {lastThreeValues.map((x, i) => (
+        <p key={i}>{x}</p>
+      ))}
     </div>
   )
 }
