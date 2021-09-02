@@ -42,7 +42,7 @@ function MyComponent() {
 +  const isMounted = useIsMounted()
   React.useEffect(() => {
     fetchData().then((result) => {
-+      if (isMounted) {
++      if (isMounted()) {
         setData(result)
 +      }
     })
