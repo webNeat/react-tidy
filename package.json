@@ -23,21 +23,21 @@
     "react": ">=16.8"
   },
   "devDependencies": {
-    "@testing-library/dom": "^7.31.0",
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/react-hooks": "^7.0.0",
-    "@testing-library/user-event": "^13.1.9",
-    "@types/jest": "^26.0.23",
-    "@types/react": "^17.0.8",
-    "@types/react-dom": "^17.0.5",
+    "@testing-library/dom": "^8.11.1",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.0.2",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
     "node-notifier": "^10.0.0",
-    "prettier": "^2.3.0",
+    "prettier": "^2.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-test-renderer": "^17.0.2",
     "tsdx": "^0.14.1",
-    "tslib": "^2.2.0",
-    "typescript": "^3.9.9"
+    "tslib": "^2.3.1",
+    "typescript": "^3.9.10"
   }
 }
