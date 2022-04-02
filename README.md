@@ -67,6 +67,14 @@ Those are just examples, any issue or pull request is welcome :)
 
 ## Changelog
 
+**1.3.5 (April 2nd, 2022)**
+
+- Update dev dependencies.
+
+**1.3.4 (March 3rd, 2022)**
+
+- Fix [Can't import the named export 'useMemo' from non EcmaScript module](https://github.com/webNeat/react-tidy/issues/40)
+
 **1.3.3 (February 27th, 2022)**
 
 - Using `parcel` instead of `tsdx` and `yarn` instead of `npm`.
