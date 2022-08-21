@@ -67,6 +67,10 @@ Those are just examples, any issue or pull request is welcome :)
 
 ## Changelog
 
+**1.3.6 (August 21th, 2022)**
+
+- Update dev dependencies.
+
 **1.3.5 (April 2nd, 2022)**
 
 - Update dev dependencies.
