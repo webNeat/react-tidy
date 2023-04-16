@@ -3,9 +3,8 @@
 A collection of atomic, independent, typed, tested and documented React custom hooks.
 
 [![Bundle size](https://img.shields.io/bundlephobia/minzip/react-tidy?style=flat-square)](https://bundlephobia.com/result?p=react-tidy)
-[![Tests Status](https://img.shields.io/github/workflow/status/webneat/react-tidy/Tests?style=flat-square)](https://github.com/webneat/react-tidy/actions?query=workflow:"Tests")
+[![Tests Status](https://img.shields.io/github/actions/workflow/status/webneat/react-tidy/tests.yml?branch=master&style=flat-square)](https://github.com/webneat/react-tidy/actions?query=workflow:"Tests")
 [![Coverage Status](https://img.shields.io/coveralls/github/webNeat/react-tidy/master?style=flat-square)](https://coveralls.io/github/webNeat/react-tidy?branch=master)
-[![Code Quality](https://img.shields.io/lgtm/grade/javascript/github/webNeat/react-tidy?style=flat-square)](https://lgtm.com/projects/g/webNeat/react-tidy/context:javascript)
 [![Rank](https://img.shields.io/librariesio/sourcerank/npm/react-tidy?style=flat-square)](https://libraries.io/npm/react-tidy)
 [![Version](https://img.shields.io/npm/v/react-tidy?style=flat-square)](https://www.npmjs.com/package/react-tidy)
 [![MIT](https://img.shields.io/npm/l/react-tidy?style=flat-square)](LICENSE)
@@ -66,6 +65,10 @@ You can contribute to this library in many ways, including:
 Those are just examples, any issue or pull request is welcome :)
 
 ## Changelog
+
+**1.3.7 (April 17th 2023)**
+
+- Update dev dependencies and Node version on Github actions.
 
 **1.3.6 (August 21th, 2022)**
 

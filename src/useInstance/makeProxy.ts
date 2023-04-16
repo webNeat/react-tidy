@@ -1,6 +1,6 @@
 const proxySymbol = Symbol()
 
-export function makeProxy<T extends {}>(target: T, notify: () => void): T {
+export function makeProxy<T>(target: T, notify: () => void): T {
   if ((target as any)[proxySymbol] === true) {
     return target
   }

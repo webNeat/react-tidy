@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 18
       - run: yarn
       - run: yarn build
       - run: yarn test-coverage
