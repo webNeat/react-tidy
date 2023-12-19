@@ -29,8 +29,8 @@ To keep the library **tidy**, all included hooks are:
 - **Atomic**: only does **one thing** and does it well.
 - **Independent**: does not depend on any external library/configuration/context to work. Just import and call it.
 - **Typed**: can infer the type of its arguments and give the correct type in return.
-- **Tested**: has meaningfull tests that cover all uses cases.
-- **Documented**: has it's own README describing the arguments, return and giving a usage example.
+- **Tested**: has meaningful tests that cover all use cases.
+- **Documented**: has its own README describing the arguments, return and giving a usage example.
 
 ## Installation
 
@@ -52,7 +52,7 @@ yarn add react-tidy
 - [useInstance](src/useInstance) Create an instance of any class and make your component react to its changes.
 - [usePrevious](src/usePrevious) Track previous values of a variable.
 - [useRefresh](src/useRefresh) Rerender your React component whenever you want.
-- [useStorage](src/useStorage) read and write items on browser storages the React way.
+- [useStorage](src/useStorage) Read and write items on browser storages the React way.
 
 ## Contributing
 
@@ -60,7 +60,7 @@ You can contribute to this library in many ways, including:
 
 - **Reporting bugs**: Simply open an issue and describe the bug. Please include a code snippet to reproduce the bug, it really helps to solve the problem quickly.
 
-- **Suggesting new hooks**: If you have a common use case that you think worth having its own hook, open an issue and we will discuss it. Do you already have an implementation for it? great, make a pull request and I will review it. Please make sure your code is consistent with the rest of the codebase and use [Prettier](https://prettier.io/) and [EditorConfig](https://editorconfig.org/) to format your files.
+- **Suggesting new hooks**: If you have a common use case that you think worth having its own hook, open an issue and we will discuss it. Do you already have an implementation for it? Great, make a pull request and I will review it. Please make sure your code is consistent with the rest of the codebase and use [Prettier](https://prettier.io/) and [EditorConfig](https://editorconfig.org/) to format your files.
 
 Those are just examples, any issue or pull request is welcome :)
 
